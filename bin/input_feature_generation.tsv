@@ -1,0 +1,20 @@
+### length of block and overlap can be changed in your wish
+
+>LENGTH_FLANK=7
+
+>FASTA_NAME=k_map_f_fasta.tsv
+
+
+
+##specify the peptides with sites indicated to get your emission files to proceed to test
+
+>PRED_SITES=k
+
+#name of training data
+>TRAIN_INFO=ubi_pep.tsv
+
+
+#training or test
+>TYPE=first_k
+
+

@@ -1,0 +1,19 @@
+
+###read the input of the second module
+
+
+>mycan_prob=rf_k_can_train.tsv
+
+>mydecoy_prob=rf_k_decoy_train.tsv
+
+
+>list_prots=k_f_feature_generation_output/my_proteins_first_k.tsv
+>mycan_prots=k_f_feature_generation_output/can_sites_prots_first_k.tsv
+
+>mydecoy_prots=k_f_feature_generation_output/decoy_sites_prots_first_k.tsv
+
+
+>can_col=0
+>decoy_col=0
+
+>decoy_tag=near_decoy
