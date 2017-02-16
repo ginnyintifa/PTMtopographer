@@ -10,7 +10,7 @@
 
 #include "site.hpp"
 #include "aaprop.hpp"
-#include "emisson.hpp"
+#include "emisson.hpp" //not in use
 
 #include "math.hpp"
 #include "input_feature_generation.hpp"
@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     using namespace std;
     
     
-    
+
     vector<string>myinput=read_input(argv[1]);
     vector<string>mypara=get_parameterlines(myinput);
     
@@ -37,18 +37,7 @@ int main(int argc, char *argv[])
 
     cout<<"SEE how many proteins i have "<<myproteins.size()<<endl;
     
-    
-    
-    for (size_t i=0; i<myproteins.size(); i++)
-    {
-        cout<<i<<" **************************************************"<<endl;
-        cout<<myproteins[i].first<<endl;
-        cout<<myproteins[i].second<<endl;
-    }
-    
-    
-    
-    
+
     
     vector<aa_properties> aminoacid_properties(24);
     
@@ -62,11 +51,9 @@ int main(int argc, char *argv[])
     vector<double>each_volume;
     vector<double>each_sheetpro;
     
-    
+
     assign_each_property(aminoacid_properties,each_hydro,each_pka1,each_helixpro,each_stericpar,each_polar,each_volume,each_sheetpro);
 
-    
-    
     
   
     vector<vector<string>>all_can_flank_windows{myproteins.size()};
@@ -160,9 +147,8 @@ int main(int argc, char *argv[])
     
     
     
-    decoy_compo_forall=near_decoy_compo_forall;
+    decoy_compo_forall=near_decoy_compo_forall; //Im using near decoy now
     
-    //i WILL NEED every set of files for pure decoy windows as well
     
     
     
@@ -196,6 +182,10 @@ int main(int argc, char *argv[])
     
     
     
+    //think about a way to have candidate/decoy/pure_decoy unified so I don't have to write so
+    //many times
+    //the key is to have the properties together
+    
     
     
     vector<vector<double>> hydro_forall=get_allseqs_property(aa_compo_forall,each_hydro,seqs_means_hydro);//normalized
@@ -205,11 +195,10 @@ int main(int argc, char *argv[])
     vector<vector<double>> helixpro_forall=get_allseqs_property(aa_compo_forall,each_helixpro,seqs_means_helixpro);
     vector<vector<double>> stericpar_forall=get_allseqs_property(aa_compo_forall,each_stericpar,seqs_means_hydro);//normalized
     vector<vector<double>> polar_forall=get_allseqs_property(aa_compo_forall,each_polar,seqs_means_pka1);
-   cout<<"see forall size "<<polar_forall.size()<<endl;
     
     vector<vector<double>> volume_forall=get_allseqs_property(aa_compo_forall,each_volume,seqs_means_helixpro);
     vector<vector<double>> sheetpro_forall=get_allseqs_property(aa_compo_forall,each_sheetpro,seqs_means_helixpro);
-    
+    //////
     
     vector<vector<double>> decoy_hydro_forall=get_allseqs_property(decoy_compo_forall,each_hydro,seqs_means_hydro);//normalized
     
@@ -225,10 +214,8 @@ int main(int argc, char *argv[])
     vector<vector<double>> decoy_volume_forall=get_allseqs_property(decoy_compo_forall,each_volume,seqs_means_helixpro);
     
     vector<vector<double>> decoy_sheetpro_forall=get_allseqs_property(decoy_compo_forall,each_sheetpro,seqs_means_helixpro);
-    
-    
-    
-    
+
+   //////
     vector<vector<double>> pure_decoy_hydro_forall=get_allseqs_property(pure_decoy_compo_forall,each_hydro,seqs_means_hydro);//normalized
     
     vector<vector<double>> pure_decoy_pka1_forall=get_allseqs_property(pure_decoy_compo_forall,each_pka1,seqs_means_pka1);
@@ -429,21 +416,6 @@ int main(int argc, char *argv[])
     
     
     cout<<mybackuniquesites.size()<<endl;
-    
-    /*
-    outfile.open("mapped_prots_"+ data_type +".tsv");
-    
-    for (size_t i=0; i<mybackuniquesites.size(); i++)
-    {
-        cout<<i<<" "<<mybackuniquesites[i].second.size()<<endl;
-
-            outfile<<">"<<mybackuniquesites[i].first.first<<endl;
-            outfile<<mybackuniquesites[i].first.second<<endl;
-        
-    }
-    outfile.close();
-    
-    */
     
     
     
@@ -675,8 +647,6 @@ int main(int argc, char *argv[])
     for (size_t i=0 ; i<myproteins.size(); i++)
     {
         
-        //cout<<i<<" "<<myproteins[i].second.size()<<" aacompoforall_size "<<aa_compo_forall[i].size()<<endl;
-        
         for (size_t p=0; p<aa_compo_forall[i].size(); p++)
         {
             outfile<<all_can_flank_states[i][p]<<"\t"<<"1:"<<hydro_forall[i][p]<<"\t"<<"2:"<<pka1_forall[i][p]<<"\t"<<"3:"<<helixpro_forall[i][p]<<"\t"<<"4:"<<stericpar_forall[i][p]<<"\t"<<"5:"<<polar_forall[i][p]<<"\t"<<"6:"<<volume_forall[i][p]<<"\t"<<"7:"<<sheetpro_forall[i][p]<<"\t";
@@ -702,7 +672,6 @@ int main(int argc, char *argv[])
     for (size_t i=0 ; i<myproteins.size(); i++)
     {
         
-        //cout<<i<<" "<<myproteins[i].second.size()<<" decoy_size "<<decoy_compo_forall[i].size()<<endl;
         
         for (size_t p=0; p<decoy_compo_forall[i].size(); p++)
         {
@@ -726,7 +695,7 @@ int main(int argc, char *argv[])
     for (size_t i=0 ; i<myproteins.size(); i++)
     {
         
-        //cout<<i<<" "<<myproteins[i].second.size()<<" pure decoy_size "<<pure_decoy_compo_forall[i].size()<<endl;
+       
         
         for (size_t p=0; p<pure_decoy_compo_forall[i].size(); p++)
         {
