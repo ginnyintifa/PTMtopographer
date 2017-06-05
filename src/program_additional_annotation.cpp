@@ -6,8 +6,7 @@
 //  Copyright (c) 2015年 Ginny. All rights reserved.
 //
 
-//a modification
-//in R want to label ones that are filtered to be 1 as green,
+
 
 
 

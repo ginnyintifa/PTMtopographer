@@ -1,11 +1,11 @@
 
 
-tr_c_f="/Users/ginny/A_anal_PTM/PTM_COM/bin/decoy_t/second/can_sites_properties.tsv"
-tr_s="/Users/ginny/A_anal_PTM/PTM_COM/bin/decoy_t/second/can_sites_states.tsv"
-test_c_f="/Users/ginny/PTMtopographer_NOV/bin/can_sites_properties_test.tsv"
-test_d_f="/Users/ginny/PTMtopographer_NOV/bin/decoy_sites_properties_test.tsv"
-out_c="candidate_left_t.tsv"
-out_d="decoy_left_t.tsv"
+#tr_c_f="PTMtopographer/bin/can_sites_properties_first_k.tsv"
+#tr_s="PTMtopographer/bin/can_sites_states_first_k.tsv"
+#test_c_f="PTMtopographer/bin/can_sites_properties_second_k.tsv"
+#test_d_f="PTMtopographer/bin/decoy_sites_properties_second_k.tsv"
+#out_c="candidate_second_k_rf.tsv"
+#out_d="decoy_second_k_rf.tsv"
 
 
 library(randomForest)

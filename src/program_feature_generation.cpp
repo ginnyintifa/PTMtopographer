@@ -86,11 +86,9 @@ int main(int argc, char *argv[])
     
     for (size_t i=0; i<aa_compo_forall.size(); i++)
     {
-        cout<<i<<" "<<aa_compo_forall[i].size()<<endl;
+         //cout<<i<<" "<<aa_compo_forall[i].size()<<endl;
     }
     
-    
-    //ok now to achieve the new construction of decoy i need to apply the following on the core of +/- 2 if the core does not have any candidate site, it will be eligable as a decoy window
     
     vector<vector<vector<int>>>right_decoy_compo_forall{decoy_center_compo_forall.size()};
     vector<vector<vector<int>>>pure_decoy_compo_forall{decoy_center_compo_forall.size()};
@@ -520,7 +518,7 @@ int main(int argc, char *argv[])
     for (size_t i=0 ; i<myproteins.size(); i++)
     {
         
-        cout<<i<<" "<<myproteins[i].second.size()<<" aacompoforall_size "<<aa_compo_forall[i].size()<<endl;
+        //cout<<i<<" "<<myproteins[i].second.size()<<" aacompoforall_size "<<aa_compo_forall[i].size()<<endl;
         
         for (size_t p=0; p<aa_compo_forall[i].size(); p++)
         {

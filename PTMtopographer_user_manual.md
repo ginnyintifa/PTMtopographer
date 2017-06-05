@@ -2,7 +2,7 @@
 
 Ginny ginnyli056@gmail.com
 
-This manual explains the workflow to run PTMtopographer, with an example of serine phosphorylation analysis on a set of target proteins. In this tutorial, we will use the Ubi_K-peptides from the PhosphoSitePlus database to train a random forest classifier, and compute prediction scores (the probability of having a Ubi_K) for candidate windows and decoy windows. The tutorial generates site-level annotation as well as protein-level annotation output.
+This manual explains the workflow to run PTMtopographer, with an example of ubiquitination analysis on a set of target proteins. In this tutorial, we will use the Ubi_K-peptides from the PhosphoSitePlus database to train a random forest classifier, and compute prediction scores (the probability of having a Ubi_K) for candidate windows and decoy windows. The tutorial generates site-level annotation as well as protein-level annotation output.
 
 
 
@@ -84,7 +84,7 @@ DtLsEEsyKDStLIM
 ## Step 2. Three modules of PTMtopographer & Machine learning algorithm scripts
 
 * Module for feature data generation.
-* Module for prediction summarisation including calculation of false discovery rates (DER, pDER).
+* Module for prediction summarisation including calculation of false discovery rates (gDER, pDER).
 * Module for annotating additional information to the protein and site-level output.
 
 ### 2A. Feature generation
@@ -210,7 +210,7 @@ Setting -b to 1 indicates that we expect the probability score as prediction out
 
 ### 2B. Prediction summary
 
-The second module processes the output from the machine learning algorithm, including calculation of dER and pDER. We illustrate this for the case of random forest prediction results here. 
+The second module processes the output from the machine learning algorithm, including calculation of gDER and pDER. We illustrate this for the case of random forest prediction results here. 
 
 #### Input parameter file
 
@@ -225,7 +225,10 @@ The second module processes the output from the machine learning algorithm, incl
 
 >mydecoy_prots=decoy_sites_prots_B.tsv
 
->mycan_states=can_sites_states_B.tsv
+>can_col=0
+>decoy_col=0
+
+>decoy_tag=near 
 ```
 #### Command line
 ```
