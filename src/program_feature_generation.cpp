@@ -419,8 +419,7 @@ int main(int argc, char *argv[])
     
     
     cout<<"Size of psp mapped proteins "<<mybackuniquesites.size()<<endl;
-    
-    cout<<"done! "<<endl;
+ 
     
     vector<vector<int>>all_can_flank_states{myproteins.size()};
     vector<vector<size_t>>all_prot_can_pos{myproteins.size()};
@@ -715,6 +714,7 @@ int main(int argc, char *argv[])
     
     
     
+    cout<<"done! "<<endl;
     
     
     

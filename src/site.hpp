@@ -590,7 +590,7 @@ get_mapps(const std::vector<prot_type>& myproteins,const std::vector<Pep_in_prot
     
 	vector<vector<search_res_type>> all_index_pos{mylinks.size()};
     
-	cerr<<"get mappping...\n";
+	cerr<<"Get mapping...\n";
     
   #pragma omp parallel for
     
