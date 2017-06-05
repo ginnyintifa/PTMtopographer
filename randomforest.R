@@ -82,7 +82,7 @@ randomforest=function(tr_c_f,tr_s,test_c_f, test_d_f,out_c,out_d)
 
   
 
-randomforest(tr_c_f,tr_s,test_c_f, test_d_f,out_c,out_d)
+#randomforest(tr_c_f,tr_s,test_c_f, test_d_f,out_c,out_d)
   
   
   
