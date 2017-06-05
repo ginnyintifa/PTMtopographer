@@ -180,12 +180,6 @@ setwd("PTMtopographer/")
 
 source("randomforest.R")
 
-#install.packages(data.table)
-library(data.table)
-
-#install.packages(randomForest)
-library(randomForest)
-
 training_candidate_feature="bin/can_sites_properties_A.tsv"
 training_states="bin/can_sites_states_A.tsv"
 test_candidate_feature="bin/can_sites_properties_B.tsv"

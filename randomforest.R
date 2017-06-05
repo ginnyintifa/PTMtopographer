@@ -8,6 +8,20 @@
 #out_d="decoy_second_k_rf.tsv"
 
 
+#check if the user has these packages installed.
+
+pkg=installed.packages()
+
+if (!"randomForest" %in% pkg)
+install.packages("randomForest")
+
+if (!"data.table" %in% pkg)
+install.packages("data.table")
+
+
+
+
+
 library(randomForest)
 library(data.table)
 
