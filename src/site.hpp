@@ -590,7 +590,7 @@ get_mapps(const std::vector<prot_type>& myproteins,const std::vector<Pep_in_prot
     
 	vector<vector<search_res_type>> all_index_pos{mylinks.size()};
     
-	cerr<<"searching...\n";
+	cerr<<"get mappping...\n";
     
   #pragma omp parallel for
     
@@ -600,7 +600,7 @@ get_mapps(const std::vector<prot_type>& myproteins,const std::vector<Pep_in_prot
     }
     
     
-	cerr<<"to get all the ids and protein seqs which have peptides mapped on...\n";
+	//cerr<<"to get all the ids and protein seqs which have peptides mapped on...\n";
     
     
 	vector<vector<Pep_in_prot>> peps_sites_positions(myproteins.size());
@@ -617,7 +617,7 @@ get_mapps(const std::vector<prot_type>& myproteins,const std::vector<Pep_in_prot
 			peps_sites_positions[search.prot_idx].push_back(pep);
 		}
     
-    cout<<"when doing the mapps "<<peps_sites_positions.size()<<endl;
+    //cout<<"when doing the mapps "<<peps_sites_positions.size()<<endl;
 	///// filter out proteins without peptide match
 	vector<prot_type> myproteins2;
 	vector<vector<Pep_in_prot>> peps_sites_positions2;

@@ -34,8 +34,9 @@ int main(int argc, char *argv[])
     
     vector<prot_type> myproteins=read_fasta(myparavalue.fasta_name);//function using here is dependent on the format of file.
     
+    cout<<"Name of fasta file: "<<myparavalue.fasta_name<<endl;
 
-    cout<<"SEE how many proteins i have "<<myproteins.size()<<endl;
+    cout<<"Size of fasta file: "<<myproteins.size()<<endl;
     
 
     
@@ -207,7 +208,7 @@ int main(int argc, char *argv[])
     vector<vector<double>> decoy_stericpar_forall=get_allseqs_property(decoy_compo_forall,each_stericpar,seqs_means_hydro);//normalized
     
     vector<vector<double>> decoy_polar_forall=get_allseqs_property(decoy_compo_forall,each_polar,seqs_means_pka1);
-    cout<<"see forall size "<<polar_forall.size()<<endl;
+    //cout<<"see forall size "<<polar_forall.size()<<endl;
     
     vector<vector<double>> decoy_volume_forall=get_allseqs_property(decoy_compo_forall,each_volume,seqs_means_helixpro);
     
@@ -223,7 +224,7 @@ int main(int argc, char *argv[])
     vector<vector<double>> pure_decoy_stericpar_forall=get_allseqs_property(pure_decoy_compo_forall,each_stericpar,seqs_means_hydro);//normalized
     
     vector<vector<double>> pure_decoy_polar_forall=get_allseqs_property(pure_decoy_compo_forall,each_polar,seqs_means_pka1);
-    cout<<"see forall size "<<polar_forall.size()<<endl;
+    //cout<<"see forall size "<<polar_forall.size()<<endl;
     
     vector<vector<double>> pure_decoy_volume_forall=get_allseqs_property(pure_decoy_compo_forall,each_volume,seqs_means_helixpro);
     
@@ -348,10 +349,10 @@ int main(int argc, char *argv[])
     
     
 
-        cout<<myparavalue.backinfo<<endl;
+        cout<<"Name of peptides file: "<<myparavalue.backinfo<<endl;
         vector<string> mybackinfo=read_tsv(myparavalue.backinfo);
         
-        cout<<mybackinfo.size()<<endl;
+        cout<<"Size of peptide file: "<<mybackinfo.size()<<endl;
         for (size_t i=0; i<mybackinfo.size(); i++)
         {
             for (size_t p=0; p<mybackinfo[i].size(); p++)
@@ -376,7 +377,7 @@ int main(int argc, char *argv[])
         }
         
         
-        cout<<"get signs...\n";
+        cout<<"Get signs...\n";
         
         
         vector<string>mybackinfopeptides=mybackinfo;
@@ -389,14 +390,14 @@ int main(int argc, char *argv[])
             }
         }
         
-        cout<<"get the peptides...\n";
+        cout<<"Get peptides...\n";
         
     
         mybackinfopeptides=read_concise(mybackinfopeptides);
         
         
         vector<Pep_in_prot> mybacklinks=link_peptides_with_sites(mybackinfopeptides, mybackinfo,myparavalue.pred_sites);
-        cout<<"get links...\n";
+        cout<<"Get links...\n";
     
     
     
@@ -404,7 +405,7 @@ int main(int argc, char *argv[])
     
 
     
-        cout<<"get maps...\n";
+        cout<<"Get maps...\n";
         vector<pair<prot_type,vector<size_t>>> mybackprotsitesall=get_all_seq_sites(backppmap);
         vector<pair<prot_type,vector<size_t>>> mybackneededprotsiteall=get_needed_myprot_sites_all(mybackprotsitesall);
     
@@ -413,13 +414,13 @@ int main(int argc, char *argv[])
         vector<pair<prot_type,vector<size_t>>> mybackuniquesites=get_unique_site(mybackneededprotsiteall);
     
     
-    cout<<mybackuniquesites.size()<<endl;
+    //cout<<mybackuniquesites.size()<<endl;
     
     
     
-    cout<<"see after psp mapping proteins "<<mybackuniquesites.size()<<endl;
+    cout<<"Size of psp mapped proteins "<<mybackuniquesites.size()<<endl;
     
-    cout<<myparavalue.pred_sites[0]<<endl;
+    cout<<"done! "<<endl;
     
     vector<vector<int>>all_can_flank_states{myproteins.size()};
     vector<vector<size_t>>all_prot_can_pos{myproteins.size()};
