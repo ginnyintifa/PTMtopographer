@@ -186,12 +186,12 @@ library(data.table)
 #install.packages(randomForest)
 library(randomForest)
 
-training_candidate_feature="can_sites_properties_A.tsv"
-training_states="can_sites_states_A.tsv"
-test_candidate_feature="can_sites_properties_B.tsv"
-test_decoy_feature="decoy_sites_properties_B.tsv"
-outputfile_can="rf_prediction_B_decoy.tsv"
-outputfile_decoy="rf_prediction_B_decoy.tsv"
+training_candidate_feature="bin/can_sites_properties_A.tsv"
+training_states="bin/can_sites_states_A.tsv"
+test_candidate_feature="bin/can_sites_properties_B.tsv"
+test_decoy_feature="bin/decoy_sites_properties_B.tsv"
+outputfile_can="bin/rf_prediction_B_decoy.tsv"
+outputfile_decoy="bin/rf_prediction_B_decoy.tsv"
 
 randomforest(training_candidate_feature, training_states, test_candidate_feature, test_decoy_feature, outputfile_can, outputfile_decoy)
 
