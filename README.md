@@ -2,7 +2,7 @@
 
 Ginny ginnyli056@gmail.com/A0123847@u.nus.edu
 
-This manual explains the workflow to run PTMtopographer, with an example of ubiquitination analysis on a set of target proteins. In this tutorial, we will use the Ubi_K-peptides from the PhosphoSitePlus database to train a random forest classifier, and compute prediction scores (the probability of having a Ubi_K) for candidate windows and decoy windows. The tutorial generates site-level annotation as well as protein-level annotation output.
+This manual explains the workflow to run PTMtopographer, with an example of ubiquitination analysis(two-fold cross validation) on a set of target proteins. In this tutorial, we will use the Ubi_K-peptides from the PhosphoSitePlus database to train a random forest classifier, and compute prediction scores (the probability of having a Ubi_K) for candidate windows and decoy windows. The tutorial generates site-level annotation as well as protein-level annotation output.
 
 Note that the input parameter files we provide is ready to use if you follow the tutorial.
 
