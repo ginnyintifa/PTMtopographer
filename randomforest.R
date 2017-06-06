@@ -34,9 +34,6 @@ randomforest=function(tr_c_f,tr_s,test_c_f, test_d_f,out_c,out_d)
   mypspx=as.data.frame(pspx)
   
   
-    
-  mypspx=mypspx[,-28]
-  
   shrinkx=mypspx[,1:27]
   
   pspy=fread(tr_s)
@@ -62,8 +59,6 @@ randomforest=function(tr_c_f,tr_s,test_c_f, test_d_f,out_c,out_d)
   expx=fread(test_c_f)
   myexpx=as.data.frame(expx)
   
-  myexpx=myexpx[,-28]
-  
   mynewexpx=as.matrix(myexpx[,1:27])
   
   #####
@@ -71,21 +66,32 @@ randomforest=function(tr_c_f,tr_s,test_c_f, test_d_f,out_c,out_d)
   decoyexpx=fread(test_d_f)
   decoymyexpx=as.data.frame(decoyexpx)
   
-  decoymyexpx=decoymyexpx[,-28]
   
   decoymynewexpx=as.matrix(decoymyexpx[,1:27])
   
   
   set.seed(123)
   
+  cat("get input frames prepared")
+  cat("\n")
   
   
   myrfmodel=randomForest(as.matrix(shrinkx),y) 
   
   
+  cat("get model trained")
+  cat("\n")
+  
+  
   mypredict=predict(myrfmodel,mynewexpx,type="prob")
   
   mydecoy=predict(myrfmodel,decoymynewexpx,type="prob")
+  
+  
+  cat("get prediction")
+  cat("\n")
+  
+  
   
   write.table(mypredict[,2],out_c,quote=F,row.names = F)
   
