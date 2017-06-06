@@ -1,9 +1,10 @@
 #PTMtopographer user manual
 
-Ginny ginnyli056@gmail.com
+Ginny ginnyli056@gmail.com/A0123847@u.nus.edu
 
 This manual explains the workflow to run PTMtopographer, with an example of ubiquitination analysis on a set of target proteins. In this tutorial, we will use the Ubi_K-peptides from the PhosphoSitePlus database to train a random forest classifier, and compute prediction scores (the probability of having a Ubi_K) for candidate windows and decoy windows. The tutorial generates site-level annotation as well as protein-level annotation output.
 
+Note that the input parameter files we provide is ready to use if you follow the tutorial.
 
 
 
@@ -89,7 +90,7 @@ DtLsEEsyKDStLIM
 
 ### 2A. Feature generation
 
-This module generates feature data for candidate windows and decoy windows for the target protein sequences user provides. Suppose that we wish to train the model using protein set A and predict PTM sites on protein set B, the user needs to run this script for both A \& B and produce the feature data for candidate windows in set A, and feature data for candidate and decoy windows in set B.
+This module generates feature data for candidate windows and decoy windows for the target protein sequences user provides. Suppose that we wish to train the model using protein set A(first_k) and predict PTM sites on protein set B(second_k), the user needs to run this script for both A \& B and produce the feature data for candidate windows in set A, and feature data for candidate and decoy windows in set B.
 
 #### Input parameter file
 
@@ -100,7 +101,7 @@ The following items must be specified in the input parameter file for this modul
 >length_flank=7                                                       
 # number of flanking amino acids around the target site
 
->fasta_name=fasta_A.tsv           
+>fasta_name=k_map_f_fasta.tsv           
 # 1A
 
 >pred_site=k                                                  
@@ -109,8 +110,8 @@ The following items must be specified in the input parameter file for this modul
 >train_info=ubi_pep.tsv   
 # 1B
 
->type=A
-# or B
+>type=first_k
+# or second_k
 ```
 
 #### Command line
@@ -124,34 +125,34 @@ The following items must be specified in the input parameter file for this modul
 Execution of this module on each data set (training/test) generates a number of output files for later use:
 
 ```
-can_sites_position_A.tsv
-can_sites_properties_A.tsv
-can_sites_prots_A.tsv
-can_sites_states_A.tsv
-can_svm_input_A.tsv
-decoy_sites_properties_A.tsv
-decoy_sites_prots_A.tsv
-decoy_svm_input_A.tsv
-head_annotations_A.tsv
-protein_head_annotations_A.tsv
-my_proteins_A.tsv
+can_sites_position_first_k.tsv
+can_sites_properties_first_k.tsv
+can_sites_prots_first_k.tsv
+can_sites_states_first_k.tsv
+can_svm_input_first_k.tsv
+decoy_sites_properties_first_k.tsv
+decoy_sites_prots_first_k.tsv
+decoy_svm_input_first_k.tsv
+head_annotations_first_k.tsv
+protein_head_annotations_first_k.tsv
+my_proteins_first_k.tsv
 
 ```
 
 Similarly, running on set B will produce the following files:
 
 ```
-can_sites_position_B.tsv
-can_sites_properties_B.tsv
-can_sites_prots_B.tsv
-can_sites_states_B.tsv
-can_svm_input_B.tsv
-decoy_sites_properties_B.tsv
-decoy_sites_prots_B.tsv
-decoy_svm_input_B.tsv
-head_annotations_B.tsv
-protein_head_annotations_B.tsv
-my_proteins_B.tsv
+can_sites_position_second_k.tsv
+can_sites_properties_second_k.tsv
+can_sites_prots_second_k.tsv
+can_sites_states_second_k.tsv
+can_svm_input_second_k.tsv
+decoy_sites_properties_second_k.tsv
+decoy_sites_prots_second_k.tsv
+decoy_svm_input_second_k.tsv
+head_annotations_second_k.tsv
+protein_head_annotations_second_k.tsv
+my_proteins_second_k.tsv
 
 ```
 
@@ -173,12 +174,12 @@ library(data.table)
 #install.packages(randomForest)
 library(randomForest)
 
-training_candidate_feature="can_sites_properties_A.tsv"
-training_states="can_sites_states_A.tsv"
-test_candidate_feature="can_sites_properties_B.tsv"
-test_decoy_feature="decoy_sites_properties_B.tsv"
-outputfile_can=“rf_prediction_B_decoy.tsv"
-outputfile_decoy=“rf_prediction_B_decoy.tsv"
+training_candidate_feature="can_sites_properties_first_k.tsv"
+training_states="can_sites_states_first_k.tsv"
+test_candidate_feature="can_sites_properties_second_k.tsv"
+test_decoy_feature="decoy_sites_properties_second_k.tsv"
+outputfile_can=“rf_prediction_second_k_decoy.tsv"
+outputfile_decoy=“rf_prediction_second_k_decoy.tsv"
 
 randomforest(training_candidate_feature, training_states, test_candidate_feature, test_decoy_feature, outputfile_can, outputfile_decoy)
 
@@ -188,18 +189,18 @@ randomforest(training_candidate_feature, training_states, test_candidate_feature
 
 For training the SVM classifier, the user needs to get the best parameters in the kernel function first.
 ```
- grid.py can_svm_input_A.tsv
+ grid.py can_svm_input_first_k.tsv
 ```
 
 Then this should give the best gamma and cost for later training.
 ```
-./svm-train -g 2 -c 32 -b 1 -e 0.5 -h 0 can_svm_input_A.tsv model_trained_on_A
+./svm-train -g 2 -c 32 -b 1 -e 0.5 -h 0 can_svm_input_first_k.tsv model_trained_on_first_k
 ```
 
-Setting -b to 1 indicates that we expect the probability score as prediction output. "model_trained_on_A" is the name of the model we trained. Finally, we compute prediction scores for the sites on both candidate data and decoy data in protein sequences in set B.
+Setting -b to 1 indicates that we expect the probability score as prediction output. "model_trained_on_first_k" is the name of the model we trained. Finally, we compute prediction scores for the sites on both candidate data and decoy data in protein sequences in set B(second_k).
 ```
-./svm-predict -b 1 can_svm_input_B.tsv model_trained_on_A prediction_can_A_on_B
-./svm-predict -b 1 decoy_svm_input_B.tsv model_trained_on_A prediction_decoy_A_on_B
+./svm-predict -b 1 can_svm_input_second_k.tsv model_trained_on_first_k prediction_can_first_k_on_second_k
+./svm-predict -b 1 decoy_svm_input_second_k.tsv model_trained_on_first_k prediction_decoy_first_k_on_second_k
 ```
 
 
@@ -215,15 +216,15 @@ The second module processes the output from the machine learning algorithm, incl
 #### Input parameter file
 
 ```
->mycan_prob=rf_prediction_B_can.tsv
+>mycan_prob=rf_prediction_second_k_can.tsv
 
->mydecoy_prob=rf_prediction_B_decoy.tsv
+>mydecoy_prob=rf_prediction_second_k_decoy.tsv
 
->list_prots=my_proteins_B.tsv
+>list_prots=my_proteins_second_k.tsv
 
->mycan_prots=can_sites_prots_B.tsv
+>mycan_prots=can_sites_prots_second_k.tsv
 
->mydecoy_prots=decoy_sites_prots_B.tsv
+>mydecoy_prots=decoy_sites_prots_second_k.tsv
 
 >can_col=0
 >decoy_col=0
@@ -254,9 +255,9 @@ The third module appends additional site-level and protein-level information and
 >dom_name=program_additional_annotation_input/domain_name.tsv
 >dom_type=program_additional_annotation_input/domain_type.tsv
 
->can_sites_position=can_sites_position_B.tsv
+>can_sites_position=can_sites_position_second_k.tsv
 
->myprots=my_proteins_B.tsv
+>myprots=my_proteins_second_k.tsv
 
 >prot_cytoskeleton=program_additional_annotation_input/cytoskeleton.tsv
 >prot_cytosol=program_additional_annotation_input/cytosol.tsv
@@ -270,7 +271,7 @@ The third module appends additional site-level and protein-level information and
 >prot_nucleus=program_additional_annotation_input/nucleus.tsv
 >prot_peroxisome=program_additional_annotation_input/peroxisome.tsv
 
->rf_score=rf_prediction_B_can.tsv
+>rf_score=rf_prediction_second_k_can.tsv
 >head_annotation=head_annotation.tsv
 >global_der=global_der.tsv
 >prot_specific_der=prot_specific_der.tsv
