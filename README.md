@@ -23,6 +23,14 @@ make
 ```
 should compile the source and create three binary files in the /PTMtopographer/bin/.
 
+After compiling, direct to bin for running：
+
+```
+cd bin
+```
+
+
+
 ## Step 1. Preparing input files
 * Fasta file containing training and test protein sequences (e.g. Uniprot fasta file).
 * Training peptide sequences (e.g. PhosphoSitePlus) with PTM sites marked in lower case letters 
@@ -163,23 +171,31 @@ Before we proceed to the second module of PTMtopograher, we need to train the pr
 
 #### Random forest
 
-For random forest, 
+For random forest, proceed to R session.
 
 ```
+
+###set your working directory 
+
+setwd("PTMtopographer/")
+
 source("randomforest.R")
 
-#install.packages(data.table)
-library(data.table)
-
-#install.packages(randomForest)
-library(randomForest)
-
+<<<<<<< HEAD
 training_candidate_feature="can_sites_properties_first_k.tsv"
 training_states="can_sites_states_first_k.tsv"
 test_candidate_feature="can_sites_properties_second_k.tsv"
 test_decoy_feature="decoy_sites_properties_second_k.tsv"
 outputfile_can=“rf_prediction_second_k_decoy.tsv"
 outputfile_decoy=“rf_prediction_second_k_decoy.tsv"
+=======
+training_candidate_feature="bin/can_sites_properties_A.tsv"
+training_states="bin/can_sites_states_A.tsv"
+test_candidate_feature="bin/can_sites_properties_B.tsv"
+test_decoy_feature="bin/decoy_sites_properties_B.tsv"
+outputfile_can="bin/rf_prediction_B_decoy.tsv"
+outputfile_decoy="bin/rf_prediction_B_decoy.tsv"
+>>>>>>> 6c2d9b4b30d08f98f8cbeadb60370949688e7ef2
 
 randomforest(training_candidate_feature, training_states, test_candidate_feature, test_decoy_feature, outputfile_can, outputfile_decoy)
 
@@ -295,6 +311,30 @@ The third module appends additional site-level and protein-level information and
 site_annotation.tsv
 protein_annotation.tsv
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
