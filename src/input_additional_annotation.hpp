@@ -69,9 +69,9 @@ struct Para_values
     
     
     
-    double first_fdr_score;
-    double second_fdr_score;
-    double third_fdr_score;
+    //double first_fdr_score;
+    //double second_fdr_score;
+    //double third_fdr_score;
    
 };
 
@@ -418,7 +418,8 @@ Para_values  get_paravalues(vector<string>parastring)
         
     }
     
-    
+   
+    /*
     for (size_t p=0; p<parastring[23].size(); p++)
     {
         if (parastring[23][p]=='=')
@@ -462,6 +463,8 @@ Para_values  get_paravalues(vector<string>parastring)
     
     
 
+  */
+    
     
     
     

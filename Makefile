@@ -29,6 +29,6 @@ bin/program_additional_annotation: $(objs2)
 
 clean:
 	$(RM) bin/program_feature_generation bin/program_prediction_summary bin/program_additional_annotation $(objs) 
-	$(RM) src/program_feature_generation.o bin/program_prediction_summary.o bin/program_additional_annotation.o $(objs) 
+	$(RM) src/program_feature_generation.o src/program_prediction_summary.o src/program_additional_annotation.o $(objs) 
 	
 

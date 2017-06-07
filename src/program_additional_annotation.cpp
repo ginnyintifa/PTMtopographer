@@ -67,7 +67,7 @@ vector<int> get_domain_proportions(vector<double>pred_scores,vector<vector<strin
     
     
     
-    cout<<in_domain_above_score<<" "<<near_domain_above_score<<" "<<bt_domain_above_score<<" "<<all_above_score<<endl;
+    //cout<<in_domain_above_score<<" "<<near_domain_above_score<<" "<<bt_domain_above_score<<" "<<all_above_score<<endl;
     
     
     return domain_proportion_of_a_score;
@@ -137,9 +137,9 @@ int main(int argc, char *argv[])
     
     vector<vector<double>>prot_specific_dfdr=read_vector_double(myparavalue.prot_specific_dfdr);
     
-    cout<<"got the files "<<endl;
+   // cout<<"got the files "<<endl;
     
-    cout<<"check prot specific dfdr size "<<prot_specific_dfdr.size()<<endl;
+    //cout<<"check prot specific dfdr size "<<prot_specific_dfdr.size()<<endl;
     
     //after lunch I will program the add on dfdr part
     
@@ -158,11 +158,11 @@ int main(int argc, char *argv[])
    // vector<int>mypred_states=read_int(myparavalue.pred_site_states);
 
     
-    cout<<myproteins_id.size()<<" look at size "<<endl;
+    cout<<" Protein size "<<myproteins_id.size()<<endl;
     
     for (size_t i=0; i<myproteins_id.size(); i++)
     {
-        cout<<i<<" "<<myproteins_id[i]<<endl;
+       // cout<<i<<" "<<myproteins_id[i]<<endl;
     }
     
     
@@ -171,7 +171,7 @@ int main(int argc, char *argv[])
     
     for (size_t i=0; i<myproteins_id.size(); i++)
     {
-        cout<<i<<" "<<myproteins_id[i]<<endl;
+        //cout<<i<<" "<<myproteins_id[i]<<endl;
         
         if (myproteins_id[i].substr(9,1)=="|")
         {
@@ -184,7 +184,7 @@ int main(int argc, char *argv[])
     }
 
     
-    cout<<"getting the id "<<endl;
+    //cout<<"getting the id "<<endl;
     
     vector<vector<vector<string>>> domain_bl{myproteins_id.size()};//for each protein and each window there may be multiple domains to which the sites belong
     
@@ -262,7 +262,7 @@ int main(int argc, char *argv[])
     
 
     
-    cout<<"get domain set "<<endl;
+   // cout<<"get domain set "<<endl;
     
     
     
@@ -280,7 +280,7 @@ int main(int argc, char *argv[])
         }
     }
     
-    cout<<all_domain_bl.size()<<endl;
+   // cout<<all_domain_bl.size()<<endl;
     
     vector<vector<string>>all_near_domain_bl;
     
@@ -293,7 +293,7 @@ int main(int argc, char *argv[])
         }
     }
     
-    cout<<all_near_domain_bl.size()<<endl;
+   // cout<<all_near_domain_bl.size()<<endl;
     
    
     
@@ -405,7 +405,7 @@ int main(int argc, char *argv[])
         }
     }
     
-    cout<<"NEW VECTOR SIZE "<<all_rf_score.size()<<" "<<site_prot.size()<<endl;
+   // cout<<"NEW VECTOR SIZE "<<all_rf_score.size()<<" "<<site_prot.size()<<endl;
     
     
     
@@ -462,7 +462,7 @@ int main(int argc, char *argv[])
     outfile<<protein_head_annotation[0];
     outfile<<"subcellular_location"<<endl;
     
-    cout<<head_annotation.size()<<endl;
+   // cout<<head_annotation.size()<<endl;
     
     for (size_t i=0; i<protein_head_annotation.size()-1; i++)
     {
@@ -481,19 +481,21 @@ int main(int argc, char *argv[])
     outfile.close();
     
     
-    vector<int> proportion_first=get_domain_proportions(all_rf_score, all_domain_bl,all_near_domain_bl,myparavalue.first_fdr_score);
+    cout<<"Done!"<<endl;
+    
+   // vector<int> proportion_first=get_domain_proportions(all_rf_score, all_domain_bl,all_near_domain_bl,myparavalue.first_fdr_score);
     
     
     
-    vector<int> proportion_second=get_domain_proportions(all_rf_score, all_domain_bl,all_near_domain_bl,myparavalue.second_fdr_score);
+  //  vector<int> proportion_second=get_domain_proportions(all_rf_score, all_domain_bl,all_near_domain_bl,myparavalue.second_fdr_score);
     
     
-    vector<int> proportion_third=get_domain_proportions(all_rf_score, all_domain_bl,all_near_domain_bl,myparavalue.third_fdr_score);
+    //vector<int> proportion_third=get_domain_proportions(all_rf_score, all_domain_bl,all_near_domain_bl,myparavalue.third_fdr_score);
     
     
     
     
-    vector<int> proportion_all=get_domain_proportions(all_rf_score, all_domain_bl,all_near_domain_bl,0);
+    //vector<int> proportion_all=get_domain_proportions(all_rf_score, all_domain_bl,all_near_domain_bl,0);
     
     
     

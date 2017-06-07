@@ -183,19 +183,19 @@ std::vector<std::vector<double>> read_svm_output(const std::string& fn)
 {
     using namespace std;
     
-    cout<<"first check "<<endl;
+    //cout<<"first check "<<endl;
     
     ifstream ifs(fn);
     
-    cout<<"pass first"<<endl;
+    //cout<<"pass first"<<endl;
     check_init_istream(ifs);
     
-    cout<<"start reading "<<endl;
+   // cout<<"start reading "<<endl;
     
     string dummyLine;
     getline(ifs,dummyLine);
     
-    cout<<dummyLine<<endl;
+    //cout<<dummyLine<<endl;
     
     vector<vector<double>> v;
     

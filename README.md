@@ -1,6 +1,6 @@
-#PTMtopographer user manual
+# PTMtopographer user manual
 
-Ginny ginnyli056@gmail.com/A0123847@u.nus.edu
+Ginny ginnyli056@gmail.com / A0123847@u.nus.edu
 
 This manual explains the workflow to run PTMtopographer, with an example of ubiquitination analysis(two-fold cross validation) on a set of target proteins. In this tutorial, we will use the Ubi_K-peptides from the PhosphoSitePlus database to train a random forest classifier, and compute prediction scores (the probability of having a Ubi_K) for candidate windows and decoy windows. The tutorial generates site-level annotation as well as protein-level annotation output.
 
@@ -109,13 +109,13 @@ The following items must be specified in the input parameter file for this modul
 >length_flank=7                                                       
 # number of flanking amino acids around the target site
 
->fasta_name=k_map_f_fasta.tsv           
+>fasta_name=../tutorial/k_map_f_fasta.tsv           
 # 1A
 
 >pred_site=k                                                  
 # target site to be predicted
 
->train_info=ubi_pep.tsv   
+>train_info=../tutorial/ubi_pep.tsv   
 # 1B
 
 >type=first_k
@@ -146,6 +146,7 @@ protein_head_annotations_first_k.tsv
 my_proteins_first_k.tsv
 
 ```
+Users can put these outputs to the folder  `tutorial/k_f_feature_generation_output`
 
 Similarly, running on set B will produce the following files:
 
@@ -163,6 +164,7 @@ protein_head_annotations_second_k.tsv
 my_proteins_second_k.tsv
 
 ```
+Users can put these outputs to the folder  `tutorial/k_s_feature_generation_output`
 
 
 ### Machine learning algorithms
@@ -181,21 +183,15 @@ setwd("PTMtopographer/")
 
 source("randomforest.R")
 
-<<<<<<< HEAD
+
 training_candidate_feature="can_sites_properties_first_k.tsv"
 training_states="can_sites_states_first_k.tsv"
 test_candidate_feature="can_sites_properties_second_k.tsv"
 test_decoy_feature="decoy_sites_properties_second_k.tsv"
-outputfile_can=“rf_prediction_second_k_decoy.tsv"
+outputfile_can=“rf_prediction_second_k_can.tsv"
 outputfile_decoy=“rf_prediction_second_k_decoy.tsv"
-=======
-training_candidate_feature="bin/can_sites_properties_A.tsv"
-training_states="bin/can_sites_states_A.tsv"
-test_candidate_feature="bin/can_sites_properties_B.tsv"
-test_decoy_feature="bin/decoy_sites_properties_B.tsv"
-outputfile_can="bin/rf_prediction_B_decoy.tsv"
-outputfile_decoy="bin/rf_prediction_B_decoy.tsv"
->>>>>>> 6c2d9b4b30d08f98f8cbeadb60370949688e7ef2
+
+
 
 randomforest(training_candidate_feature, training_states, test_candidate_feature, test_decoy_feature, outputfile_can, outputfile_decoy)
 
@@ -232,22 +228,27 @@ The second module processes the output from the machine learning algorithm, incl
 #### Input parameter file
 
 ```
->mycan_prob=rf_prediction_second_k_can.tsv
+>mycan_prob=../tutorial/rf_prediction_second_k_can.tsv
 
->mydecoy_prob=rf_prediction_second_k_decoy.tsv
+>mydecoy_prob=../tutorial/rf_prediction_second_k_decoy.tsv
 
->list_prots=my_proteins_second_k.tsv
+>list_prots=../tutorial/k_s_feature_generation_output/my_proteins_second_k.tsv
 
->mycan_prots=can_sites_prots_second_k.tsv
+>mycan_prots=../tutorial/k_s_feature_generation_output/can_sites_prots_second_k.tsv
 
->mydecoy_prots=decoy_sites_prots_second_k.tsv
+>mydecoy_prots=../tutorial/k_s_feature_generation_output/decoy_sites_prots_second_k.tsv
 
 >can_col=0
 >decoy_col=0
 
->decoy_tag=near 
+>decoy_tag=near_decoy
 ```
 #### Command line
+```
+cd bin
+```
+
+
 ```
 ./program_prediction_summary input_prediction_summary.tsv
 ```
@@ -259,6 +260,11 @@ prot_specific_der.tsv
 global_der.tsv
 
 ```
+Users can put these outputs to the folder  `tutorial/k_s_prediction_summary_output`. After predicting on the first set using the second set as training, put output to the folder `tutorial/k_f_prediction_summary_output`. 
+
+
+
+
 
 ### 2C. Additional annotation of prediction output
 The third module appends additional site-level and protein-level information and produces the final output of the analysis. The annotation files we provide here were generated for human proteins. Users who are performing prediction analysis on other organisms, these files must be prepared accordingly. 
@@ -271,9 +277,9 @@ The third module appends additional site-level and protein-level information and
 >dom_name=program_additional_annotation_input/domain_name.tsv
 >dom_type=program_additional_annotation_input/domain_type.tsv
 
->can_sites_position=can_sites_position_second_k.tsv
+>can_sites_position=../tutorial/k_s_feature_generation_output/can_sites_position_second_k.tsv
 
->myprots=my_proteins_second_k.tsv
+>myprots=../tutorial/k_s_feature_generation_output/my_proteins_second_k.tsv
 
 >prot_cytoskeleton=program_additional_annotation_input/cytoskeleton.tsv
 >prot_cytosol=program_additional_annotation_input/cytosol.tsv
@@ -287,18 +293,26 @@ The third module appends additional site-level and protein-level information and
 >prot_nucleus=program_additional_annotation_input/nucleus.tsv
 >prot_peroxisome=program_additional_annotation_input/peroxisome.tsv
 
->rf_score=rf_prediction_second_k_can.tsv
->head_annotation=head_annotation.tsv
->global_der=global_der.tsv
->prot_specific_der=prot_specific_der.tsv
->prot_head_annotation=protein_head_annotation.tsv
+>rf_score=../tutorial/rf_prediction_second_k_can.tsv
+
+>head_annotation=../tutorial/k_s_feature_generation_output/head_annotation.tsv
+
+>global_der=../tutorial/k_s_prediction_summary_output/global_der.tsv
+
+>prot_specific_der=../tutorial/k_s_prediction_summary_output/prot_specific_der.tsv
+
+>prot_head_annotation=../tutorial/k_s_feature_generation_output/protein_head_annotation.tsv
 
 ```
 
 #### Command line
-
+```
+cd bin
 ```
 
+
+
+```
 ./program_additional_annotation input_additional_annotation.tsv
 
 ```
@@ -314,7 +328,10 @@ protein_annotation.tsv
 
 
 
+Users can put these outputs to the folder  `tutorial/k_s_additional_annotation_output`
 
+
+After generating results for the first set, users can put these outputs to the folder  `tutorial/k_f_additional_annotation_output`
 
 
 

@@ -36,7 +36,7 @@ vector<int>get_tf_table(vector<double>global_dfdr, double given_dfdr,vector<doub
     
     double which_score=double(which_arg)/double(10000);
     
-    cout<<which_score<<endl;
+    //cout<<which_score<<endl;
     
     
     vector<int>tf_table(4);
@@ -83,7 +83,7 @@ vector<int>get_tf_table_via_score(double score, vector<double>predicted_score, v
     
     
     double which_score=score;
-    cout<<which_score<<endl;
+   // cout<<which_score<<endl;
     
     
     vector<int>tf_table(4);
@@ -178,7 +178,7 @@ double get_score_for_max_or(vector<double>predicted_score,vector<int>known_state
         int arg_score=get_argmaximuma(or_cal);
     
     
-    cout<<arg_score<<" "<<or_cal[arg_score]<<endl;
+   // cout<<arg_score<<" "<<or_cal[arg_score]<<endl;
     
     return double(arg_score+1)/double(10000);
     
@@ -196,7 +196,7 @@ int main(int argc, char *argv[])
 
 {
     
-    cout<<"start "<<endl;
+    cout<<"Start to run"<<endl;
     
     
     
@@ -206,7 +206,7 @@ int main(int argc, char *argv[])
     
     Para_values myparavalue=get_paravalues(mypara);
     
-    cout<<"get my paravalue "<<endl;
+    cout<<"Get my paravalue "<<endl;
     
     
     
@@ -219,7 +219,7 @@ int main(int argc, char *argv[])
     
     vector<vector<double>> mypredict_probs=read_svm_output(myparavalue.pred_probs);
     
-    cout<<"get predict probs "<<endl;
+    cout<<"Get predict probs "<<endl;
 
     
   
@@ -230,10 +230,10 @@ int main(int argc, char *argv[])
     vector<vector<double>> mydecoy_probs=read_svm_output(myparavalue.decoy_probs);
     
     
-    cout<<"get decoy probs"<<endl;
+    cout<<"Get decoy probs"<<endl;
     
     
-    cout<<"get mypredict probs and decoy probs "<<mypredict_probs.size()<<" "<<mydecoy_probs.size()<<endl;
+    cout<<"Get mypredict probs and decoy probs size "<<mypredict_probs.size()<<" "<<mydecoy_probs.size()<<endl;
 
     
     int can_col=myparavalue.can_col;
@@ -251,25 +251,25 @@ int main(int argc, char *argv[])
     
     
     
-    cout<<"check reading size "<<mypredict_probs[0].size()<<" "<<mypredict_probs[1].size()<<endl;
+    //cout<<"Check reading size "<<mypredict_probs[0].size()<<" "<<mypredict_probs[1].size()<<endl;
     
-    cout<<mypredict_probs[0][0]<<" "<<mypredict_probs[1][0]<<" "<<mypredict_probs[2][0]<<endl;
+    //cout<<mypredict_probs[0][0]<<" "<<mypredict_probs[1][0]<<" "<<mypredict_probs[2][0]<<endl;
     
     
     
     vector<string>myprotids=read_tsv(myparavalue.my_prots);
     
-    cout<<"get protids."<<endl;
+    //cout<<"get protids."<<endl;
     
     vector<int> mycan_protids=read_int(myparavalue.can_prots);
     
-    cout<<"get can_id"<<endl;
+   // cout<<"get can_id"<<endl;
     
     vector<int> mydecoy_protids=read_int(myparavalue.decoy_prots);
     
     
 
-    cout<<"get the files"<<endl;
+    //cout<<"get the files"<<endl;
     
     
     vector<double>all_predict_probs(mypredict_probs.size());
@@ -376,7 +376,7 @@ int main(int argc, char *argv[])
     
     ofstream outfile;
     
-    cout<<"give output "<<endl;
+    cout<<"Give output "<<endl;
     
     outfile.open("prot_specific_der_" + decoy_tag + ".tsv");
     
@@ -447,7 +447,7 @@ int main(int argc, char *argv[])
         if (numdown!=0)
         {
             
-            cout<<"monitor the ajustment size "<<all_can_size<<" "<<all_decoy_size<<endl;
+            //cout<<"monitor the ajustment size "<<all_can_size<<" "<<all_decoy_size<<endl;
             
             all_dfdr[h-1]=(double(numup)/double(numdown))*(double(all_can_size)/double(all_decoy_size));
             
@@ -471,6 +471,8 @@ int main(int argc, char *argv[])
     
     outfile.close();
     
+    
+    cout<<"Done!"<<endl;
     
     
     
