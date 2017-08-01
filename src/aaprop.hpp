@@ -414,12 +414,16 @@ std::vector<int> get_aawhich(std::string pred_site)
     {
         case 'z':
             aawhich=23;
+	    break;
         case 'u':
             aawhich=22;
+	    break;
         case 'b':
             aawhich=21;
+	    break;
         case 'x':
             aawhich=20;
+	    break;
         case 'g':
             aawhich=0;
             break;
@@ -525,14 +529,16 @@ std::vector<int>grab_aa_vector(const std::vector<aa_properties> &aminoacid_prope
         {
             case 'Z':
                 aa_vector[23]+=1;
-                
+                break;
             case 'U':
                 aa_vector[22]+=1;
-                
+                break;
             case 'B':
                 aa_vector[21]+=1;
+		break;
             case 'X':
                 aa_vector[20]+=1;
+		break;
             case 'G':
                 aa_vector[0]+=1;
                 break;
