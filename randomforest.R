@@ -12,10 +12,10 @@
 
 pkg=installed.packages()
 
-if (!"randomForest" %in% pkg)
+if (!"randomForest" %in% pkg[,1])
 install.packages("randomForest")
 
-if (!"data.table" %in% pkg)
+if (!"data.table" %in% pkg[,1])
 install.packages("data.table")
 
 
