@@ -296,13 +296,13 @@ The third module appends additional site-level and protein-level information and
 
 >rf_score=../tutorial/rf_prediction_second_k_can.tsv
 
->head_annotation=../tutorial/k_s_feature_generation_output/head_annotation.tsv
+>head_annotation=../tutorial/k_s_feature_generation_output/head_annotation_second_k.tsv
 
 >global_der=../tutorial/k_s_prediction_summary_output/global_der_near_decoy.tsv
 
 >prot_specific_der=../tutorial/k_s_prediction_summary_output/prot_specific_der_near_decoy.tsv
 
->prot_head_annotation=../tutorial/k_s_feature_generation_output/protein_head_annotation.tsv
+>prot_head_annotation=../tutorial/k_s_feature_generation_output/protein_head_annotation_second_k.tsv
 
 ```
 
