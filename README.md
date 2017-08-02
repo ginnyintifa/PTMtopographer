@@ -6,7 +6,7 @@ This manual explains the workflow to run PTMtopographer, with an example of ubiq
 
 Note that the input parameter files we provide is ready to use if you follow the tutorial.
 
-In cases where you simply want to get your predicitons of new set of peptides, you may choose to use training peptides from PhosphoSite Plus. We have downloaded the lastest version(May 2017) of some PTMs from PhosphoSite Plus and they are in the folder "peps_PSP"
+In cases where you simply want to get your predicitons of new set of peptides, you may choose to use training peptides from [PhosphoSitePlus](http://www.phosphosite.org/homeAction.action). We have downloaded the lastest version(May 2017) of some PTMs from PhosphoSite Plus and they are in the folder "peps_PSP"
 
 
 
