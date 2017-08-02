@@ -355,7 +355,7 @@ int main(int argc, char *argv[])
                 
             }
             
-            if (numdown!=0&decoy_probs_spec[i].size()!=0)
+            if (numdown!=0 && decoy_probs_spec[i].size()!=0)
             {
                 at_each_dfdr[i]=(double(numup)/double(numdown))*(double(pred_probs_spec[i].size())/double(decoy_probs_spec[i].size()));
 

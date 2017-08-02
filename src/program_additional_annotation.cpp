@@ -50,7 +50,7 @@ vector<int> get_domain_proportions(vector<double>pred_scores,vector<vector<strin
                 near_domain_above_score=near_domain_above_score+1;
             }
             
-            if (all_domain_bl[i].size()==0&all_near_domain_bl[i].size()==0)
+            if (all_domain_bl[i].size()==0 && all_near_domain_bl[i].size()==0)
             {
                 bt_domain_above_score=bt_domain_above_score+1;
             }
@@ -222,7 +222,7 @@ int main(int argc, char *argv[])
                     
                        size_t ab_pos=mypositions[i][p]+1;//+1 because the position of domain is from 1 not 0;
                     
-                        if (ab_pos>=dom_start[d]&ab_pos<=dom_end[d])
+                        if (ab_pos>=dom_start[d] && ab_pos<=dom_end[d])
                         {
                             each_domain_bl[p].push_back(dom_name[d]);
                             each_domain_type_bl[p].push_back(dom_type[d]);
@@ -240,7 +240,7 @@ int main(int argc, char *argv[])
                             star=dom_start[d]-near_length;
                         
                     
-                        if ((ab_pos>=star&ab_pos<dom_start[d])|(ab_pos<=(dom_end[d]+near_length)&ab_pos>dom_end[d]))
+                        if ((ab_pos>=star && ab_pos<dom_start[d])|(ab_pos<=(dom_end[d]+near_length) && ab_pos>dom_end[d]))
                         {
                             
                             each_near_domain_bl[p].push_back(dom_name[d]);
