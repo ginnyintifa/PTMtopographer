@@ -2,9 +2,9 @@
 ###read the input of the second module
 
 
->mycan_prob=../tutorial/rf_k_can_train.tsv
+>mycan_prob=../tutorial/rf_prediction_second_k_can.tsv
 
->mydecoy_prob=../tutorial/rf_k_decoy_train.tsv
+>mydecoy_prob=../tutorial/rf_prediction_second_k_decoy.tsv
 
 
 >list_prots=../tutorial/k_s_feature_generation_output/my_proteins_second_k.tsv
