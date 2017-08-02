@@ -2,10 +2,11 @@
 
 Ginny ginnyli056@gmail.com / A0123847@u.nus.edu
 
-This manual explains the workflow to run PTMtopographer, with an example of ubiquitination analysis(two-fold cross validation) on a set of target proteins. In this tutorial, we will use the Ubi_K-peptides from the PhosphoSitePlus database to train a random forest classifier, and compute prediction scores (the probability of having a Ubi_K) for candidate windows and decoy windows. The tutorial generates site-level annotation as well as protein-level annotation output.
+This manual explains the workflow to run PTMtopographer, with an example of ubiquitination analysis(two-fold cross validation) on a set of target proteins. In this tutorial, we will use the Ubi_K-peptides from the [PhosphoSitePlus](http://www.phosphosite.org/homeAction.action) database to train a random forest classifier, and compute prediction scores (the probability of having a Ubi_K) for candidate windows and decoy windows. The tutorial generates site-level annotation as well as protein-level annotation output.
 
 Note that the input parameter files we provide is ready to use if you follow the tutorial.
 
+In cases where you simply want to get your predicitons of new set of peptides, you may choose to use training peptides from [PhosphoSitePlus](http://www.phosphosite.org/homeAction.action). We have downloaded the lastest version (May 2017) of some PTMs from PhosphoSite Plus and they are in the folder "peps_PSP"
 
 
 
@@ -184,12 +185,12 @@ setwd("PTMtopographer/")
 source("randomforest.R")
 
 
-training_candidate_feature="can_sites_properties_first_k.tsv"
-training_states="can_sites_states_first_k.tsv"
-test_candidate_feature="can_sites_properties_second_k.tsv"
-test_decoy_feature="decoy_sites_properties_second_k.tsv"
-outputfile_can=“rf_prediction_second_k_can.tsv"
-outputfile_decoy=“rf_prediction_second_k_decoy.tsv"
+training_candidate_feature="tutorial/k_f_feature_generation_output/can_sites_properties_first_k.tsv"
+training_states="tutorial/k_f_feature_generation_output/can_sites_states_first_k.tsv"
+test_candidate_feature="tutorial/k_s_feature_generation_output/can_sites_properties_second_k.tsv"
+test_decoy_feature="tutorial/k_s_feature_generation_output/decoy_sites_properties_second_k.tsv"
+outputfile_can=“tutorial/rf_prediction_second_k_can.tsv"
+outputfile_decoy=“tutorial/rf_prediction_second_k_decoy.tsv"
 
 
 
