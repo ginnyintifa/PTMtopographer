@@ -184,12 +184,12 @@ setwd("PTMtopographer/")
 source("randomforest.R")
 
 
-training_candidate_feature="can_sites_properties_first_k.tsv"
-training_states="can_sites_states_first_k.tsv"
-test_candidate_feature="can_sites_properties_second_k.tsv"
-test_decoy_feature="decoy_sites_properties_second_k.tsv"
-outputfile_can=“rf_prediction_second_k_can.tsv"
-outputfile_decoy=“rf_prediction_second_k_decoy.tsv"
+training_candidate_feature="tutorial/k_f_feature_generation_output/can_sites_properties_first_k.tsv"
+training_states="tutorial/k_f_feature_generation_output/can_sites_states_first_k.tsv"
+test_candidate_feature="tutorial/k_s_feature_generation_output/can_sites_properties_second_k.tsv"
+test_decoy_feature="tutorial/k_s_feature_generation_output/decoy_sites_properties_second_k.tsv"
+outputfile_can=“tutorial/k_s_feature_generation_output/rf_prediction_second_k_can.tsv"
+outputfile_decoy=“tutorial/k_s_feature_generation_output/rf_prediction_second_k_decoy.tsv"
 
 
 
