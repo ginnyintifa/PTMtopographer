@@ -257,8 +257,8 @@ cd bin
 #### Output
 
 ```
-prot_specific_der.tsv
-global_der.tsv
+prot_specific_der_near_decoy.tsv
+global_der_near_decoy.tsv
 
 ```
 Users can put these outputs to the folder  `tutorial/k_s_prediction_summary_output`. After predicting on the first set using the second set as training, put output to the folder `tutorial/k_f_prediction_summary_output`. 
